@@ -5,7 +5,7 @@ package moragame;
  * */
 public class Computer {
 	public String name;
-	public int score;
+	public int score=0;
 	
 	//出拳名字
 	public String resStr(int res)
@@ -25,7 +25,7 @@ public class Computer {
 	//出拳
 	public int mora() {
 		int res = (int)(Math.random()*3)+1;
-		System.out.println(this.name+"出拳 "+this.resStr(res));
+		System.out.println(this.name+"出 "+this.resStr(res));
 		return res;
 	}
 }
