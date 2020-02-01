@@ -17,4 +17,10 @@ public class Dog extends Pet {
 	{
 		System.out.println(super.getName()+"狗狗 吃 "+food);
 	}
+	
+	//狗汪汪
+	public void wangwang() {
+		System.out.println( super.getName()+": 汪汪!!! " );
+	}
+	
 }

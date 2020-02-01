@@ -12,5 +12,9 @@ public class Cat extends Pet {
 		// TODO Auto-generated method stub		
 		System.out.println( " 喵喵~ " + super.getName() + " 吃 " + food );
 	}
+	
+	public void miaomiao() {
+		System.out.println(  super.getName() + ": 喵喵~ " );
+	}
 
 }
