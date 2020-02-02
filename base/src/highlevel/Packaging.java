@@ -15,12 +15,14 @@ public class Packaging {
 		System.out.println(pai.toString());
 		
 		float f = new Float(3.1415);
-		System.out.println(f);
+		System.out.println(f+"");
 		
 		Boolean b = new Boolean("true");
 		Boolean b1 = new Boolean("true1");//除true外都是false
+		Boolean b2 = null;
 		System.out.println(b);
-		System.out.println(b1);
+		System.out.println(b1.toString());
+		System.out.println(b2+"");
 		
 		Number num = new BigDecimal("99999999999999999999999999999");
 		System.out.println(num);
