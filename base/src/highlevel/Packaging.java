@@ -26,5 +26,18 @@ public class Packaging {
 		
 		Number num = new BigDecimal("99999999999999999999999999999");
 		System.out.println(num);
+		
+		String str = "AAA";
+		if(str=="AAA") {
+			System.out.println("str是AAA");
+		}
+		String str1 = new String("abc");
+		if(str1.equals("abc")) {
+			System.out.println("str1是abc");
+		}
+		String str2 = new String("123");
+		if("123".equals(str2)) {
+			System.out.println("str2是123");
+		}
 	}
 }
