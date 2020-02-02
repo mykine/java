@@ -3,7 +3,7 @@ package polymorphism;
 /**
  * 宠物类
  * */
-public abstract class Pet {
+public abstract class Pet implements IPetMedical {
 
 	private String name ;	
 	

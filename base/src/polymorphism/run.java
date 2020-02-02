@@ -19,10 +19,15 @@ public class run {
 			if(pets[i] instanceof Dog) {
 				Dog d = (Dog)pets[i];//父类转子类要强转
 				d.wangwang();
+				d.guideBlind();
+				d.actCute();
 			}else if(pets[i] instanceof Cat){
 				Cat c = (Cat) pets[i];
 				c.miaomiao();
+				c.actRun();
 			}
+			pets[i].bathe();
+			pets[i].birthControl();			
 		}
 	}
 	
