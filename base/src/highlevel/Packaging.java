@@ -39,5 +39,15 @@ public class Packaging {
 		if("123".equals(str2)) {
 			System.out.println("str2是123");
 		}
+		
+		String bStr = new String("true");	
+		Boolean bb = Boolean.parseBoolean(bStr);
+		System.out.println(bb);
+		
+		Integer in1 = Integer.valueOf(12);//valueof方法返回包装类对象,装箱：基本类型转换为包装类对象
+		System.out.println(in1+"");
+		int in2 = in1;//拆箱:包装类对象转换为基本类型
+		System.out.println(in2);
+		
 	}
 }
