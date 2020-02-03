@@ -7,7 +7,29 @@ public class StringClass {
 	private static Scanner input;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		//判断是否是java文件
+		String fileName = "hellowworld.java";
+		int indexFP = fileName.lastIndexOf(".");
+		if( -1 == indexFP || 0 == indexFP || fileName.substring(indexFP+1, fileName.length()).equals("java") ) {
+			System.out.println(fileName+"是java文件");
+		}else {
+			System.out.println(fileName+"不是java文件");
+		}
+		
+		//split拆分字符串装到数组里
+		String words = "helloworld.java";
+		String[] strArr = words.split("\\.");//.要转义
+		for(int n=0;n<strArr.length;n++) {
+			System.out.println(strArr[n]);
+		}
+		System.exit(0);
+		//字符串截取substring
+		String url = "http://www.baidu.com";
+		int beginIndex = url.indexOf(".")+1;
+		int endIndex = url.length(); 
+		String domain = url.substring(beginIndex, endIndex);//substring的endIndex是开区间
+		System.out.println(domain);
 		/*
 		 * 字符串相等用equal方法
 		 * ==是比较左右两边所在内存是否相等
@@ -25,7 +47,7 @@ public class StringClass {
 		System.out.println(s3==s4);
 		System.out.println(s3.equals(s4));
 		
-//		System.exit(0);
+		System.exit(0);
 		
 		String verifyCode = "79CD";
 		String name,passwd="";
