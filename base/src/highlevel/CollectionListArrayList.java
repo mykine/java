@@ -11,7 +11,7 @@ public class CollectionListArrayList {
 	
 	public static void main(String args[])
 	{
-		ArrayList arr = new ArrayList();
+		ArrayList<Cat> arr = new ArrayList<Cat>();
 		Cat catA = new Cat("小黑");
 		arr.add(catA);
 		Cat catB = new Cat("小白");
@@ -28,16 +28,16 @@ public class CollectionListArrayList {
 		System.out.println( "1小猫:" + ((Cat) arr.get(1)).getName() );
 	}
 	
-	public static void printArr1(ArrayList arr)
+	public static void printArr1(ArrayList<Cat> arr)
 	{
 		for(int i=0;i<arr.size();i++ ) {
-			Cat cat = (Cat)arr.get(i);
+			Cat cat = arr.get(i);
 			cat.setName(cat.getName()+"1");
 			System.out.println("一只小喵:"+cat.getName());
 		}
 	}
 	
-	public static void printArr2(ArrayList arr)
+	public static void printArr2(ArrayList<Cat> arr)
 	{
 		for(Object obj : arr)
 		{
@@ -46,12 +46,12 @@ public class CollectionListArrayList {
 		}
 	}
 	
-	public static void printArr3(ArrayList arr)
+	public static void printArr3(ArrayList<Cat> arr)
 	{
-		Iterator it = arr.iterator();
+		Iterator<Cat> it = arr.iterator();
 		while(it.hasNext())
 		{
-			Cat cat = (Cat) it.next();
+			Cat cat = it.next();
 			System.out.print(";喵喵:"+cat.getName());
 		}
 	}
