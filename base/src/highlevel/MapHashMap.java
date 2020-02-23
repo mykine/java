@@ -27,6 +27,13 @@ public class MapHashMap {
 			Cat cat = cats.get(key);
 			System.out.println(key+":"+cat.getName());
 		}
+		
+		for( Map.Entry<String, Cat> entry : cats.entrySet() )
+		{
+			String key = entry.getKey();
+			Cat cat = entry.getValue();
+			System.out.println(key+":"+cat.getName());
+		}
 	}
 
 }
