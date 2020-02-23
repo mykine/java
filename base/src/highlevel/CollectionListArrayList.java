@@ -1,6 +1,7 @@
 package highlevel;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import polymorphism.Cat;
 /**
@@ -19,6 +20,7 @@ public class CollectionListArrayList {
 		arr.add(catC);
 		printArr1(arr);
 		printArr2(arr);
+		printArr3(arr);
 		System.out.println("");
 		System.out.println(arr.indexOf(catB));
 		arr.remove(0);
@@ -41,6 +43,16 @@ public class CollectionListArrayList {
 		{
 			Cat cat = (Cat)obj;
 			System.out.print(";一只小喵:"+cat.getName());
+		}
+	}
+	
+	public static void printArr3(ArrayList arr)
+	{
+		Iterator it = arr.iterator();
+		while(it.hasNext())
+		{
+			Cat cat = (Cat) it.next();
+			System.out.print(";喵喵:"+cat.getName());
 		}
 	}
 }
