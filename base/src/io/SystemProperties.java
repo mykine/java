@@ -7,19 +7,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 利用Properties类操作普通文本配置文件
+ * */
 public class SystemProperties {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		//读取properties文件配置信息
 		Properties prop = new Properties();
-		File input = new File("config/config.properties");
+		File input = new File("config/config.txt");
 		prop.load(new FileInputStream(input));
 		System.out.println(prop.getProperty("ip"));
 		
 		//写入配置信息到properties文件
 		Properties prop2 = new Properties();
-		File output = new File("config/new.properties");
+		File output = new File("config/new.txt");
 		prop2.setProperty("redis.host", "192.168.10.102");
 		prop2.setProperty("mysql.host", "192.168.10.103");
 		prop2.store(new FileOutputStream(output), "");
