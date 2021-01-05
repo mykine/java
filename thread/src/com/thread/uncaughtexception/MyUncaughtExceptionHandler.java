@@ -1,4 +1,4 @@
-package uncaughtexception;
+package com.thread.uncaughtexception;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

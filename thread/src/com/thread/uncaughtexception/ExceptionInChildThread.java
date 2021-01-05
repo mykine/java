@@ -1,4 +1,4 @@
-package uncaughtexception;
+package com.thread.uncaughtexception;
 
 /**
  * 单线程主线程抛出异常可以利用try-catch进行捕获处理

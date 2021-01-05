@@ -1,8 +1,6 @@
-package uncaughtexception;
+package com.thread.uncaughtexception;
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UseOwnUncaughtExceptionHandler implements Runnable {
     public static void main(String[] args) throws InterruptedException {
