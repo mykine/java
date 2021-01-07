@@ -2,6 +2,11 @@ package com.juc.threadlocal;
 
 /**
  * 单个线程内部多个方法共享操作一个参数
+ *
+ * ThreadLocal实现的原理:
+ * Thread类包含一个成员变量ThreadLocalMap变量，类似HashMap数据结构，
+ * 当前线程的ThreadLocal对象作为key,要操作的参数对象作为value,组成键值对Entry存入当前线程的ThreadLocalMap中，以供操作
+ *
  * 演示：避免传递参数的麻烦
  * */
 public class ThreadLocalNormalUsage06 {
@@ -50,6 +55,8 @@ class Service2{
 class Service3{
     public void process(){
         System.out.println(this.getClass()+"得到用户:"+UserContextHolder.holder.get().getName());
+        User user = new User("阿黄2");
+        UserContextHolder.holder.set(user);
         new Service4().process();
     }
 }
