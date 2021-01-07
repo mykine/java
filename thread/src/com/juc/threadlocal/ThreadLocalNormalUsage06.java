@@ -5,7 +5,7 @@ package com.juc.threadlocal;
  *
  * ThreadLocal实现的原理:
  * Thread类包含一个成员变量ThreadLocalMap变量，类似HashMap数据结构，
- * 当前线程的ThreadLocal对象作为key,要操作的参数对象作为value,组成键值对Entry存入当前线程的ThreadLocalMap中，以供操作
+ * 当前线程的ThreadLocal对象作为key(是个弱引用),要操作的参数对象作为value(是个强引用),组成键值对Entry存入当前线程的ThreadLocalMap中，以供操作
  *
  * 演示：避免传递参数的麻烦
  * */
@@ -73,6 +73,8 @@ class Service4{
 class Service5{
     public void process(){
         System.out.println(this.getClass()+"得到用户:"+UserContextHolder.holder.get().getName());
+        //使用完ThreadLocal对象后，要记得执行remove方法，及时删除当前线程的ThreadLocalMap中的Entry对象，避免Entry的value因为强引用无法被GC造成内存泄漏
+        UserContextHolder.holder.remove();
     }
 }
 
