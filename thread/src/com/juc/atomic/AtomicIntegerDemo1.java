@@ -9,9 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * */
 public class AtomicIntegerDemo1 implements  Runnable{
 
+    //被final修饰的对象，对象的引用不能变，但是对象本身的内容依然可以变化
     public static final AtomicInteger  atomicInteger = new AtomicInteger();
 
-    public static int normalValue = 0;
+    public static  int normalValue = 0;
 
     public static void main(String[] args) throws InterruptedException {
         AtomicIntegerDemo1 r = new AtomicIntegerDemo1();

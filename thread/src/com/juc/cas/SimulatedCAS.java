@@ -6,6 +6,8 @@ package com.juc.cas;
  *          CPU会判断预期值和内存中真实的现值是否相等，
  *          如果是，就修改值，
  *          否则就知道了有其他线程修改了共享资源，不修改当前线程要改的值，当前线程不操作或抛异常等
+ * 缺点：CAS只判断值是否相等，不判断期间是否执行过，可能会出现ABA问题，原始值是A，先修改成B，再修改成B，这时CAS可能就判断不出来有其他线程操作过了
+ * 应用场景：乐观锁、并发容器、原子类
  * 演示：模拟CAS原理,等价代码
  * */
 public class SimulatedCAS implements Runnable {
@@ -29,10 +31,10 @@ public class SimulatedCAS implements Runnable {
 
     @Override
     public void run() {
-        compared(0,1);
+        comparedAndSet(0,1);
     }
 
-    private int compared(int expectedVal,int newVal){
+    private int comparedAndSet(int expectedVal,int newVal){
         synchronized(Runnable.class){
             System.out.println(Thread.currentThread().getName()+"预期值="+expectedVal+",当前内存中值="+this.val+",要改成的值="+newVal);
             if(expectedVal==this.val){
