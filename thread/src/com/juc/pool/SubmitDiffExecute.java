@@ -17,8 +17,9 @@ import java.util.concurrent.*;
  *      submit()可接收Callable参数，Callable的call方法可以向外抛出CheckedException,当然也可以抛出UnCheckedException
  * 对于UnCheckedException:
  *      execute方法在子线程内会抛出运行时异常,调用线程可以通过实现UncaughtExceptionHandle接口处理UncheckedException;
- *      submit方法在子线程内，最终执行的是FutureTask的run方法，该方法内会通过try...catch捕捉异常并不再抛出，可以通过调用Future的get()捕捉异常,
- *          要注意的是无论参数是Runnable还是Callable,如果不对返回值Future调用get()方法，异常都会被"吃掉"
+ *      submit方法在子线程内，最终执行的是FutureTask的run方法，该方法内会通过try...catch捕捉异常并不再抛出，但是可以通过调用Future的get()时将捕捉的异常重新抛出,
+ *          要注意的是无论参数是Runnable还是Callable,如果不对返回值Future调用get()方法，异常都会被"吃掉",
+ *          Future的get方法会捕获Callable的call方法执行时抛出的异常，并包装成统一的ExecutionException再向调用线程(主线程)抛出
  *
  * */
 public class SubmitDiffExecute {
