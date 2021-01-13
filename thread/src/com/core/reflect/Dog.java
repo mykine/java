@@ -1,4 +1,4 @@
-//package com.core.reflect;
+package com.core.reflect;
 
 public class Dog implements Animal {
     @Override

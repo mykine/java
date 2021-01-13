@@ -1,4 +1,4 @@
-//package com.core.reflect;
+package com.core.reflect;
 
 public interface Animal {
    public void eat();
