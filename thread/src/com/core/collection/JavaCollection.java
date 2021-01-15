@@ -5,6 +5,8 @@ import java.util.*;
 /**
  * Collection是顶层接口，List接口和Set接口继承Collection,
  *
+ * 不带泛型的情况下，List和Set都可以同时存储任意类型的元素
+ *
  * List的元素按照所以顺序存储，可以存储相同值的元素，
  *      ArrayList类和LinkedList类实现了List接口
  *      ArrayList:可变长度的数组，连续的内存空间
