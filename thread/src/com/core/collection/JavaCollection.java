@@ -30,51 +30,13 @@ import java.util.*;
 public class JavaCollection {
 
     public static void main(String[] args) {
-//        arrayListDemo();
+        arrayListDemo();
 //        linkedListDemo();
 
-          setDemo();
+//          setDemo();
     }
 
-   /**
-    * Set Demo
-    * Set特点是不会存在重复元素,存储无序，无法通过索引获取元素,要通过iterator或foreach遍历元素
-    * 遍历Set所有元素时会发现，读取出来的元素顺序和当初添加他们时的顺序不一致，就说明了Set是无序存储的
-    * */
-    public static void setDemo(){
-        Set set = new HashSet();
-        Demo1 tom = new Demo1(1001, "tom");
-        set.add(tom);
-        set.add(tom);
-        set.add(tom);//实际上只会保存一个tom
-        set.add("12");//存储各种类型
-        set.add(999);
-        Iterator iterator = set.iterator();
-        while (iterator.hasNext()){
-            Object obj = iterator.next();
-            if(obj instanceof  String){
-                System.out.println(obj+"元素是字符串");
-            }else if(obj instanceof Integer){
-                System.out.println(obj+"元素是整数");
-            }else if(obj instanceof Demo1){
-                System.out.println(obj+"元素是整数");
-            }else{
-                System.out.println(obj+"类型未知");
-            }
-        }
 
-        //如果能确保Set中所有元素的类型都一致，就可以用foreach遍历元素了
-        System.out.println("如果能确保Set中所有元素的类型都一致，就可以用foreach遍历元素了");
-        Set<Demo1> set2 = new HashSet<Demo1>();
-        set2.add(new Demo1(1,"jerry1"));
-        set2.add(new Demo1(2,"jerry2"));
-        set2.add(new Demo1(3,"jerry3"));
-        for (Demo1 demo:set2
-             ) {
-            System.out.println(demo);
-        }
-
-    }
 
     /**
      * ArrayList Demo
@@ -85,8 +47,15 @@ public class JavaCollection {
          * 不传初始化数组容量时会创建一个空数组，在第一次调用add方法时创建一个默认容量(10)的数组，
          * 以后每次add都会检测是否需要扩容改变数组容量，再执行添加元素操作
          * 扩容源码： int newCapacity = oldCapacity + (oldCapacity >> 1);
-         * 等价于:int newCapacity = oldCapacity + (oldCapacity / 2)
-         * 即每次自动扩容1.5倍
+         *      等价于:int newCapacity = oldCapacity + (oldCapacity / 2)
+         *         即每次自动扩容1.5倍
+         * 删除元素原理：定位到被删除元素在数组中的索引位置index，计算将要移动的元素个数numMove=size-(index+1)，
+         *              如果numMove>0,将数组中位于index后面的所有元素都往前一位，
+         *              然后将原来最后一个元素置为null,使下次gc时能回收掉它占的空间,
+         *              当numMove==0时，可能情况:1.数组中只包含被删元素一个元素,被删的元素是最后数组末尾的元素,
+         *
+         * 注意：通过值来定位元素位置，是要遍历数组来确定的,时间复杂度为O(n)，
+         *      删除元素涉及到(通过值定位索引需要遍历数组)查找元素和移动元素，平均复杂度为O(n)，
          *
          * 注意：数组容量和数组大小的区别，
          *      数组容量是申请的内存大小，是预留装载元素的空间大小
@@ -107,14 +76,15 @@ public class JavaCollection {
         list1.add(new Demo1(9,"demo9"));
         list1.add(new Demo1(10,"demo10"));
         list1.add(new Demo1(11,"demo11"));
-        list1.add("test");
+//        list1.add("test");
         System.out.println("元素个数size="+list1.size());
         for (int i = 0; i < list1.size(); i++) {
             Demo1 demo1 = (Demo1) list1.get(i);
             System.out.println(demo1.getId() + ":" + demo1.getName());
         }
         System.out.println("--------------------------移除2后------------------------------");
-        list1.remove(demo2);
+//        list1.remove(demo2);
+        list1.remove(1);
         System.out.println("元素个数size="+list1.size());
         for (int i = 0; i < list1.size(); i++) {
             Demo1 demo1 = (Demo1) list1.get(i);
@@ -150,6 +120,46 @@ public class JavaCollection {
         for (int i = 0; i < list1.size(); i++) {
             Demo1 demo1 = (Demo1) list1.get(i);
             System.out.println(demo1.getId() + ":" + demo1.getName());
+        }
+
+    }
+
+    /**
+     * Set Demo
+     * Set特点是不会存在重复元素,存储无序，无法通过索引获取元素,要通过iterator或foreach遍历元素
+     * 遍历Set所有元素时会发现，读取出来的元素顺序和当初添加他们时的顺序不一致，就说明了Set是无序存储的
+     * */
+    public static void setDemo(){
+        Set set = new HashSet();
+        Demo1 tom = new Demo1(1001, "tom");
+        set.add(tom);
+        set.add(tom);
+        set.add(tom);//实际上只会保存一个tom
+        set.add("12");//存储各种类型
+        set.add(999);
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            if(obj instanceof  String){
+                System.out.println(obj+"元素是字符串");
+            }else if(obj instanceof Integer){
+                System.out.println(obj+"元素是整数");
+            }else if(obj instanceof Demo1){
+                System.out.println(obj+"元素是整数");
+            }else{
+                System.out.println(obj+"类型未知");
+            }
+        }
+
+        //如果能确保Set中所有元素的类型都一致，就可以用foreach遍历元素了
+        System.out.println("如果能确保Set中所有元素的类型都一致，就可以用foreach遍历元素了");
+        Set<Demo1> set2 = new HashSet<Demo1>();
+        set2.add(new Demo1(1,"jerry1"));
+        set2.add(new Demo1(2,"jerry2"));
+        set2.add(new Demo1(3,"jerry3"));
+        for (Demo1 demo:set2
+                ) {
+            System.out.println(demo);
         }
 
     }

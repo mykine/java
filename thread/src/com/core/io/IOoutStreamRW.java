@@ -3,7 +3,7 @@ package com.core.io;
 import java.io.*;
 
 /**
- * 字符流即char序列化成字节,涉及字符集charsetName类型，即编码格式encode
+ * 字符流:只用来操作文本文件的读写
  * 涉及基础概念:
  *      java的文本(char)是16位的无符号整数，是字符的unicode编码（双字节编码utf-16be）
  *      文件是byte byte byte...的数据序列（字节序列）
@@ -23,8 +23,13 @@ public class IOoutStreamRW {
         String testStr="测试abc\nbeijing\r天安门\r\n";//注意:中间的\r使beijing在print打印时隐藏了
 
         IOoutStreamRW.w(filePath,"utf-8",testStr);
-        System.out.println("-------------写完毕-----------");
+        System.out.println("-------------写1完毕,读1-----------");
         IOoutStreamRW.r(filePath,"utf-8");
+
+        IOoutStreamRW.w2(filePath,testStr);
+        System.out.println("-------------写1完毕,读1-----------");
+        IOoutStreamRW.r2(filePath);
+
 
     }
 
@@ -49,4 +54,25 @@ public class IOoutStreamRW {
         outputStreamWriter.close();
     }
 
+    //读--用FileReader类
+    public static void r2(String filepath) throws Exception {
+        FileReader fr = new FileReader(filepath);
+        System.out.println("encode="+fr.getEncoding());
+        int result ;
+        //read()每次读取一个字符，并将其转化为int,当是-1时表示结束
+        while ((result=fr.read())!=-1){
+            System.out.print((char)result);
+        }
+        fr.close();
+
+    }
+
+    //写--用FileWriter类,没法自定义编码，使用的是当前项目默认的编码
+    public static void w2(String filepath,String str) throws Exception {
+        FileWriter fw = new FileWriter(filepath,false);
+        char[] chars = str.toCharArray();
+        fw.write(chars);
+        fw.flush();
+        fw.close();
+    }
 }
