@@ -1,5 +1,5 @@
 
-public class arr {
+public class arr01 {
 	public static void main(String args[])
 	{
 		/******************** 数组基本用法begin ********************/

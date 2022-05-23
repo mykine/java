@@ -12,6 +12,6 @@ public class SysinArr {
 			scores[i] = scan.nextInt();
 		}
 		scan.close();
-		arr.printArr(scores);
+		arr01.printArr(scores);
 	}
 }
