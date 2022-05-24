@@ -1,7 +1,8 @@
 package algorithm.link;
 
 /**
- * 已知链表头节点指针head，将链表逆序，不可申请额外空间
+ * 题目：已知链表头节点指针head，将链表逆序，不可申请额外空间
+ * 解法：就地逆序法
  * */
 public class ReverseLink {
 
