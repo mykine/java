@@ -1,62 +1,59 @@
 package algorithm.link;
 
 /**
- * 链表中间段逆序，不能申请额外空间(即不新建数组、集合等存储型数据结构，保证空间复杂度是O(1))
+ * 链表中间段逆序，不能申请额外空间(即不新建数组、集合等存储型数据结构，保证空间复杂度是O(1))-代码优化版
  * */
-public class MidRangeReverseLink {
+public class MidRangeReverseLink2 {
 
     public static void main(String[] args) {
         Node head = initLink(6);
         echoHead(head);
-        int m=2,n=5;
+        int m=3,n=5;
         Node newHead = reverseRangeMtoNLink(head,m,n);
         System.out.println("***** 从"+m+"~"+n+"区间段逆序链表后是：");
         echoHead(newHead);
     }
 
     /**
-     * 从链表的第m至第n个区间反转链表
+     * 从链表的第m至第n个区间反转链表,且不申请额外存储空间(即不新建数组、集合等存储型数据结构，保证空间复杂度是O(1))
      * */
     static Node reverseRangeMtoNLink(Node head,int m,int n){
-        int i=0;
-        Node newHead = head;
-        Node next = head;//临时保存被操作节点的下一个节点
-        Node rHead = null;//逆序子链表的头节点
-        Node beforeRNode = null;//逆序子链表头节点的前一个节点
-        Node tairRNode = null;//逆序子链表的尾节点
+        Node newHead = head;//逆序后新链表的头节点
+        Node next = null;//临时存储下一节点的变量
+        Node beforeRNode = null;//逆序前一个节点
+        Node rhead = null;//逆序子链表头节点
+        Node rTail = null;//逆序子链表尾部节点
 
-        while(next!=null){
-            i++;
-            if(i<m){
-                //将head移动到逆序开始处
-                if(i==(m-1)){
-                    beforeRNode = head;
-                }
-                head = head.next;
-                next = head;
-
-            }else if(i>=m && i<=n){
-                //处于逆序区间
-                next = head.next;
-                head.next = rHead;
-                rHead = head;
-                if(m==i){
-                    tairRNode = head;
-                }
-                head = next;
-                if(i==n){
-                    //逆序完毕就停止操作
-                    break;
-                }
+        //将head移动到逆序开始节点
+        int i=1;
+        while (i<m){
+            if(i==(m-1)){
+                beforeRNode = head;
             }
+            head = head.next;
+            i++;
         }
-        //逆序完子链表后拼接成完整的链表
-        tairRNode.next = next;
+        next = head;
+
+        //逆序操作,此时计数器i值是m
+        while ( head!=null && i<=n ){
+            next = head.next;
+            head.next = rhead;
+            rhead = head;
+            if(i==m){
+                rTail = rhead;
+            }
+            head = next;
+            i++;
+        }
+
+        //逆序完毕后拼接成完整链表
+        rTail.next = next;
         if(beforeRNode==null){
-            //从第一个节点进行逆序的情况
-            return rHead;
-        }else {
-            beforeRNode.next = rHead;
+            //从第1个节点开始逆序的情况
+            newHead = rhead;
+        }else{
+            beforeRNode.next = rhead;
         }
         return newHead;
     }
