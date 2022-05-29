@@ -51,11 +51,11 @@ public class StackByQueue {
         private int count = 0;//队列元素个数
         private int front = 0;//队列头部数组下标
         private int tail = 0;//队列尾部数组下标
-        private int[] arr = new int[100];
+        private int[] elements = new int[100];
 
         public Queue(){
-            for (int i = 0; i < arr.length; i++) {
-                arr[i] = -1;//初始化队列数组项的值为-1，表示没有存储元素
+            for (int i = 0; i < elements.length; i++) {
+                elements[i] = -1;//初始化队列数组项的值为-1，表示没有存储元素
             }
         }
 
@@ -63,7 +63,7 @@ public class StackByQueue {
          * 添加新元素到队列尾部
          * */
         public void offer(int x){
-            arr[tail] = x;
+            elements[tail] = x;
             tail++;
             count++;
         }
@@ -72,10 +72,10 @@ public class StackByQueue {
          * 队头元素出队
          * */
         public int poll(){
-            if(arr[front]==-1){
+            if(elements[front]==-1){
                 return -1;
             }
-            int result = arr[front];
+            int result = elements[front];
             front++;
             count--;
             return result;
@@ -85,7 +85,7 @@ public class StackByQueue {
          * 查询队头元素
          * */
         public int peek(){
-            return arr[front];
+            return elements[front];
         }
 
         /**
