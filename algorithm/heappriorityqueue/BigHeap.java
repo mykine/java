@@ -29,20 +29,44 @@ public class BigHeap {
 
     public static void main(String[] args) {
         BigHeap heap = new BigHeap();
-        heap.push(1);
-        heap.push(2);
-        heap.push(3);
-        heap.push(4);
-        heap.push(5);
-        heap.push(6);
-        heap.push(7);
-        heap.push(8);
-        heap.push(9);
+//        heap.push(1);
+//        heap.push(2);
+//        heap.push(3);
+//        heap.push(4);
+//        heap.push(5);
+//        heap.push(6);
+//        heap.push(7);
+//        heap.push(8);
+//        heap.push(9);
+        int[] paramArr = new int[]{1,2,3,4,5,6,7,8,9};
+        heap.headpify(paramArr);
         System.out.println("最大堆：");
         heap.printDeap();
         System.out.println("出队后：");
         heap.poll();
         heap.printDeap();
+    }
+
+    /**
+     * Heapify算法是指将一个数组直接转换为堆存储的算法，
+     * 算法思想：从最后一个非叶子节点开始执行shiftDown，直到所有非叶子节点代表的子树均为最大堆即完成最大堆化
+     *         元素个数为num的数组，元素从数组下标1开始存储，对应的完全二叉树最后一个非叶子节点序号是num/2,
+     * 最大堆的构造性能对比：
+     * 1.利用shiftUp一个一个入队，时间复杂度是O(nlogn)
+     * 2.使用Headpify算法一次性将整个数组最大堆化，时间复杂度是O(n)
+     * */
+    public void headpify(int[] paramArr){
+        //先一次性填充到存储空间中
+        for (int i = 0; i < paramArr.length; i++) {
+            dataArr[i+1] = paramArr[i];
+            count++;
+        }
+        //然后从后往前依次将非叶子节点的子树最大堆化
+        int sunRoot = paramArr.length / 2;
+        while (sunRoot>=1){
+            shiftDown(sunRoot);
+            sunRoot--;
+        }
     }
 
     /**
@@ -87,7 +111,7 @@ public class BigHeap {
         dataArr[1] = dataArr[count];
         count--;
         //然后通过shiftDown算法调整整体元素排序为最大堆性质
-        shiftDown();
+        shiftDown(1);
         return res;
     }
 
@@ -95,8 +119,8 @@ public class BigHeap {
      * 从堆顶开始调整元素排序，再次成为最大堆
      * 算法逻辑：从堆顶开始，与左右孩子中最大的那个进行比较替换，一直向下操作，直到叶子节点或直接满足最大堆条件为止
      * */
-    private void shiftDown(){
-        int index = 1;
+    private void shiftDown(int index){
+
         while (index <= count){
             //与孩子中比较大的那个进行交换，形成最大堆的性质
             int leftIndex = index*2;
