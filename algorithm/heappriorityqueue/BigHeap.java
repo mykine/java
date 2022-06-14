@@ -65,14 +65,23 @@ public class BigHeap {
                 dataArr[indexN/2] = dataArr[indexN];
                 dataArr[indexN] = tmp;
                 indexN = indexN / 2 ;
+            }else {
+                break;//已经达到了最大堆性质，直接停止操作
             }
         }
+    }
+
+    public boolean isEmpty(){
+        return count<=0 ? true : false;
     }
 
     /**
      * 出队
      * */
     public int poll(){
+        if(count<=0){
+            return -1;//-1表示空队列
+        }
         int res = dataArr[1];
         //将最后一个元素放到堆顶位置，保持完全二叉树性质
         dataArr[1] = dataArr[count];
@@ -93,24 +102,24 @@ public class BigHeap {
             int leftIndex = index*2;
             int rightIndex = index*2+1;
             if(leftIndex > count && rightIndex > count){
-                break;
+                break;//已经形成最大堆形态，停止操作
             }else if(leftIndex <= count && rightIndex > count){
                 if(dataArr[leftIndex]>dataArr[index]){
                     int tmp = dataArr[leftIndex];
                     dataArr[leftIndex] = dataArr[index];
                     dataArr[index] = tmp;
-                    index = tmp;
+                    index = leftIndex;
                 }else{
-                    break;
+                    break;//已经形成最大堆形态，停止操作
                 }
             }else if(rightIndex <= count && leftIndex > count) {
                 if(dataArr[rightIndex]>dataArr[index]){
                     int tmp = dataArr[rightIndex];
                     dataArr[rightIndex] = dataArr[index];
                     dataArr[index] = tmp;
-                    index = tmp;
+                    index = rightIndex;
                 }else{
-                    break;
+                    break;//已经形成最大堆形态，停止操作
                 }
             }else{
                 if( dataArr[leftIndex] >= dataArr[rightIndex] && dataArr[leftIndex] > dataArr[index] ){
@@ -122,7 +131,9 @@ public class BigHeap {
                     int tmp = dataArr[rightIndex];
                     dataArr[rightIndex] = dataArr[index];
                     dataArr[index] = tmp;
-                    index = leftIndex;
+                    index = rightIndex;
+                }else{
+                    break;//已经形成最大堆形态，停止操作
                 }
             }
         }
@@ -133,7 +144,7 @@ public class BigHeap {
      * 使用连环双队列，交替存储打印每一层节点以及孩子节点，时间复杂度O(nlogN)
      *
      * */
-    private  void printDeap(){
+    public   void printDeap(){
         BaseQueue queue1 = new BaseQueue();
         BaseQueue queue2 = new BaseQueue();
         queue1.offer(1);//堆的根节点从数组项1开始
