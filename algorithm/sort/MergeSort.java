@@ -43,7 +43,7 @@ public class MergeSort {
         int midInTmpArr = mid-start+0;
         int endInEndArr = end-start+0;
         int m = startInTmpArr,n = midInTmpArr+1;
-        int resultStart = start;//结果区域填充数据的指针
+        int resultStart = start;//在结果区域用于填充数据的指针
         while (m<=midInTmpArr&&n<=endInEndArr){
             if(tmpArr[m]<tmpArr[n]){
                 arr[resultStart] = tmpArr[m];
